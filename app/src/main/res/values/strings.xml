@@ -16,5 +16,6 @@
     <string name = "divisao">/</string>
     <string name = "ponto">.</string>
     <string name = "igual">=</string>
-    <string name = "apaga">c</string>
+    <string name = "limpar">c</string>
+    <string name = "back">[x]</string>
 </resources>
