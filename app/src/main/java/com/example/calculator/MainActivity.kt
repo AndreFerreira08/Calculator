@@ -1,16 +1,11 @@
 package com.example.calculator
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
-
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-    private var n1: Double = 0.0
-    private var n2: Double = 0.0
-    private var operacao: Int = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,119 +21,65 @@ class MainActivity : AppCompatActivity() {
         val oito = findViewById<Button>(R.id.numero_oito)
         val nove = findViewById<Button>(R.id.numero_nove)
         val ponto = findViewById<Button>(R.id.ponto)
+        val limpar = findViewById<Button>(R.id.limpar)
         val add = findViewById<Button>(R.id.adicao)
+        val back = findViewById<Button>(R.id.backspace)
         val sub = findViewById<Button>(R.id.subtracao)
-        val divi = findViewById<Button>(R.id.divisao)
-        val multi = findViewById<Button>(R.id.multiplicacao)
+        val divisao = findViewById<Button>(R.id.divisao)
+        val mult = findViewById<Button>(R.id.multiplicacao)
+        val expressao = findViewById<TextView>(R.id.expressao)
+        val resul = findViewById<TextView>(R.id.resultado)
+
+        var n1 = 0
+        var n2 = 0
 
 
-        zero.setOnClickListener { numeroDigitado("0") }
-        um.setOnClickListener { numeroDigitado("1") }
-        dois.setOnClickListener { numeroDigitado("2") }
-        tres.setOnClickListener { numeroDigitado("3") }
-        quatro.setOnClickListener { numeroDigitado("4") }
-        cinco.setOnClickListener { numeroDigitado("5") }
-        seis.setOnClickListener { numeroDigitado("6") }
-        sete.setOnClickListener { numeroDigitado("7") }
-        oito.setOnClickListener { numeroDigitado("8") }
-        nove.setOnClickListener { numeroDigitado("9") }
-
-        add.setOnClickListener { operacaoDigitada(soma) }
-        sub.setOnClickListener { operacaoDigitada(subtracaao) }
-        multi.setOnClickListener { operacaoDigitada(multiplicacaao) }
-        divi.setOnClickListener { operacaoDigitada(divisaao) }
-
-        limpar.setOnClickListener { limpartudo() }
-
-        backspace.setOnClickListener { apagar() }
-
-        igual.setOnClickListener { resolver() }
-    }
+        add.SetOnClickListener {
+            n1 = textview.text.toInt()
 
 
 
-        private fun numeroDigitado(digito: String) {
+        }
+        resul.SetOnClickListener {
+            n1 = textview.text.toInt()
+            n2 = textview.text.toInt()
+            val resultado = n1
 
-
-            if (expressao.text == "0" && digito != ".") {
-                expressao.text = "$digito"
-            } else {
-                expressao.text = "${expressao.text}$digito"
-            }
-
-            if (operacao == Nao_operacao) {
-                n1 = expressao.text.toString().toDouble()
-            } else {
-                n2 = expressao.text.toString().toDouble()
-            }
         }
 
 
-        private fun operacaoDigitada(operacao: Int) {
-            this.operacao = operacao
+        fun adicao(add: int){
 
-            n1 = expressao.text.toString().toDouble()
 
+        }
+
+        fun subtracao(sub: int){
+
+
+        }
+        fun adicao(add: int){
+
+
+        }
+
+        fun adicao(add: int){
+
+
+        }
+
+        limpar.setOnClickListener {
             expressao.text = ""
-
-
+            resul.text = ""
         }
 
+        back.setOnClickListener {
 
-        private fun resolver() {
-            val result = when (operacao) {
-                soma -> n1 + n2
+            val string = expressao.text.toString()
 
-                subtracaao -> n1 - n2
-
-
-                multiplicacaao -> n1 * n2
-
-
-                divisaao -> n1 / n2
-
-                else -> 0
-            }
-
-            n1 = result as Double
-
-            resultado.text = if ("$result".endsWith(".0")) {
-                "$result".replace(".0", "")
-            } else {
-                "%.2f".format(result)
+            if (string.isNotBlank()) {
+                expressao.text = string.substring(0, string.length - 1)
+                resul.text = ""
             }
         }
-
-
-    private fun limpartudo() {
-        expressao.text = ""
-        resultado.text = ""
-        n1 = 0.0
-        n2 = 0.0
-
     }
-
-    private fun apagar() {
-
-        val string = expressao.text.toString()
-
-        if (string.isNotBlank()) {
-            expressao.text = string.substring(0, string.length - 1)
-            resultado.text = ""
-        }
-
-    }
-
-    companion object {
-        const val soma = 1
-        const val subtracaao = 2
-        const val multiplicacaao = 3
-        const val divisaao = 4
-        const val Nao_operacao = 0
-    }
-
-
 }
-
-
-
